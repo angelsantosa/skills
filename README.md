@@ -16,9 +16,9 @@ Each skill is a folder under `skills/` with a `SKILL.md` (YAML frontmatter `name
 Run these exactly. Every step is idempotent and needs no prompts.
 
 ```bash
-# 1. Clone or update, then install (needs `gh` authenticated as a user with access, or SSH to GitHub)
+# 1. Clone or update, then install (public repo: only git and bash needed)
 DIR="${SKILLS_DIR:-$HOME/.local/share/skills}"
-if [ -d "$DIR/.git" ]; then git -C "$DIR" pull --ff-only; else gh repo clone angelsantosa/skills "$DIR"; fi
+if [ -d "$DIR/.git" ]; then git -C "$DIR" pull --ff-only; else git clone https://github.com/angelsantosa/skills.git "$DIR"; fi
 "$DIR/install.sh"
 
 # 2. Verify
@@ -31,7 +31,7 @@ Exit code `0` means installed. `2` means a target already has a same-named skill
 One-liner equivalent:
 
 ```bash
-gh api repos/angelsantosa/skills/contents/bootstrap.sh -H 'Accept: application/vnd.github.raw' | bash
+curl -fsSL https://raw.githubusercontent.com/angelsantosa/skills/main/bootstrap.sh | bash
 ```
 
 ### What it does
